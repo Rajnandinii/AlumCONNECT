@@ -2,6 +2,9 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react'
+import { useDispatch } from "react-redux";
+
+import { toggleTheme } from "../../../redux/features/themeSlice";
 
 //importing theme color
 const theme_color = import.meta.env.VITE_THEME_COLOR;
@@ -33,35 +36,16 @@ function Navbar(){
     setIsMenuOpen(!isMenuOpen)
   }
 
-  const [theme, setTheme] = useState(null)
-
-  useEffect(()=>{           //to check system's theme preference
-    if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-        setTheme('dark')
-    }
-    else{
-        setTheme('light')
-    } 
-
-  },[])
-
-  useEffect(()=>{           //changes theme
-    if(theme==="dark"){
-        document.documentElement.classList.add("dark");
-    }
-    else{
-        document.documentElement.classList.remove("dark");
-    }
-
-  },[theme])
+  const dispath = useDispatch();
 
   const changeTheme =() =>{
-      setTheme(theme==="dark"? "light" : "dark")
+      dispath(toggleTheme())
   }
 
   return (
     <div className="fixed z-50 w-full bg-gray-300 dark:bg-gray-900 dark:text-gray-200" >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+
         <div className="inline-flex items-center space-x-2 p-2">
           <span>
             <svg
@@ -80,6 +64,7 @@ function Navbar(){
           </span>
           <span className="font-bold">AluMNNIT</span>
         </div>
+
         <div className="hidden grow items-start lg:flex">
           <ul className="ml-12 inline-flex space-x-8">
             {menuItems.map((item) => (
@@ -94,6 +79,7 @@ function Navbar(){
             ))}
           </ul>
         </div>
+
         <div className="hidden space-x-2 lg:block">
           <button
             type="button"

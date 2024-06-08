@@ -1,10 +1,21 @@
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 import './App.css'
 import {Landing, About, Contact, SignUp, Login} from './landing&auth/components'
 import LandingLayout from "./landing&auth/LandingLayout.jsx"
 
+import HomeLayout from "./home/HomeLayout.jsx";
+import {MiddleFeed} from "./home/components"
+
 function App() {
+
+  const theme = useSelector((state) => state.colorTheme.theme);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  }, [theme]);
   
 
   return (
@@ -22,17 +33,12 @@ function App() {
 
         {/* private routes */}
 
-        {/* <Route element={<HomeLayout />}>
-          <Route index element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
+        <Route element={<HomeLayout />}>
+          <Route path="/feed" element={<MiddleFeed />} />
+          {/* <Route path="/explore" element={<Explore />} />
           <Route path="/saved" element={<Saved />} />
-          <Route path="/all-users" element={<AllUsers />} />
-          <Route path="/create-post" element={<CreatePost />} />
-          <Route path="/update-post/:id" element={<EditPost />} />
-          <Route path="/posts/:id" element={<PostDetails />} />
-          <Route path="/profile/:id/*" element={<Profile />} />
-          <Route path="/update-profile/:id" element={<UpdateProfile />} />
-        </Route> */}
+          <Route path="/all-users" element={<AllUsers />} /> */}
+        </Route>
       </Routes>
       
     </>
