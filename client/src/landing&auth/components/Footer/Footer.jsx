@@ -25,7 +25,7 @@ function Footer(){
             </div>
 
 
-            <section className="relative overflow-hidden bg-gray-300 dark:bg-gray-900 ">
+            <section className="relative overflow-hidden bg-gray-50 dark:bg-gray-900 ">
               <div className="container relative z-10 mx-auto px-5">
                 <div className="-m-2 flex flex-wrap items-center justify-between">
                   <div className="w-auto px-4 py-6">

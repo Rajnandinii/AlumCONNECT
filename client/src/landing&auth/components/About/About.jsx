@@ -5,8 +5,8 @@ const hover_color = import.meta.env.VITE_HOVER_COLOR;
 function About(){
     return (
         <>  
-            <section className="bg-gray-200 dark:bg-gray-950 pt-20 lg:pt-24 text-blue-gray-950 dark:text-gray-50">
-                <div className=" flex flex-col items-center px-5 pt-4 pb-0 mx-auto">
+            <section className="bg-gray-200 dark:bg-gray-950 pt-20 lg:pt-24 text-blue-gray-950 dark:text-gray-50 ">
+                <div className=" flex flex-col items-center px-5 pt-4 pb-0 mx-16">
                     <div className="flex flex-col w-full mb-8 prose text-left max-w-max lg:max-w-2xl">
                         <div className="w-full mx-auto">
                             <h1 className="text-4xl font-extrabold">A small headline to switch your visitors into users.</h1>
@@ -15,8 +15,8 @@ function About(){
                         </div>
                     </div>
                 </div>
-                <div className=" items-center w-full px-5">
-                    <div className="flex flex-wrap justify-center w-full mx-auto prose max-w-max lg:max-w-3xl">
+                <div className=" items-center w-full px-16">
+                    <div className="flex flex-wrap justify-center w-full prose mx-auto max-w-max lg:max-w-3xl">
                         <div className="relative justify-center lg:px-4">
                             <div className="lg:grid lg:grid-cols-2">
                                 <div className="p-8">

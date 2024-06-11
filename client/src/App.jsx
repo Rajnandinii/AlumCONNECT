@@ -8,6 +8,7 @@ import LandingLayout from "./landing&auth/LandingLayout.jsx"
 
 import HomeLayout from "./home/HomeLayout.jsx";
 import {MiddleFeed} from "./home/components"
+import {HomePage} from "./home/Pages"
 
 function App() {
 
@@ -34,7 +35,7 @@ function App() {
         {/* private routes */}
 
         <Route element={<HomeLayout />}>
-          <Route path="/feed" element={<MiddleFeed />} />
+          <Route path="/feed" element={<HomePage />} />
           {/* <Route path="/explore" element={<Explore />} />
           <Route path="/saved" element={<Saved />} />
           <Route path="/all-users" element={<AllUsers />} /> */}

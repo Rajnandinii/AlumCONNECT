@@ -26,6 +26,8 @@ export default {
     'focus:border-lime-600',
     // Add all possible dynamic classes
   ],
-  plugins: [],
+  plugins: [
+    require('tailwindcss-textshadow'),
+  ],
 }
 

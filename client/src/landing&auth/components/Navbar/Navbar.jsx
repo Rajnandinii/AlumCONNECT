@@ -43,7 +43,7 @@ function Navbar(){
   }
 
   return (
-    <div className="fixed z-50 w-full bg-gray-300 dark:bg-gray-900 dark:text-gray-200" >
+    <div className="fixed z-50 w-full bg-gray-50 dark:bg-gray-900 dark:text-gray-200" >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
 
         <div className="inline-flex items-center space-x-2 p-2">
@@ -142,8 +142,8 @@ function Navbar(){
            {/*------------------------------------------ */}
           
         </div>
-        {isMenuOpen && (
-          <div className="fixed inset-x-0 top-0 z-50 origin-top-right transform p-2 transition lg:hidden">
+        {(
+          <div className={`fixed inset-x-0 top-0 z-50 origin-top-right transform p-2 ${isMenuOpen ? 'translate-y-0':'-translate-y-full'}  transition-transform duration-300 ease-in-out lg:hidden`}>
             <div className="divide-y-2 divide-gray-50 rounded-lg bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5">
               <div className="px-5 pb-6 pt-5">
                 <div className="flex items-center justify-between">

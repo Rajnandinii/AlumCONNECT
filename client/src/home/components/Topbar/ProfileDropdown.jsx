@@ -1,10 +1,12 @@
 import React from 'react'
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef} from 'react';
+import { NavLink } from 'react-router-dom';
+
 
 
 function ProfileDropdown() {
+  
   //for dropdown 
-
   const [Dropdown, setDropdown] = useState(false)
   const toggleDropdown = () =>{
     setDropdown((prev)=>!prev)
@@ -24,51 +26,44 @@ function ProfileDropdown() {
       };
   },[])
 
+  const dropDownItems = [
+    {   name:"Edit",
+        href:"#",
+    },
+    {   name:"Views",
+        href:"#",
+    },
+    {   name:"Icognito",
+        href:"#",
+    },
+  ]  
+
   return (
-    <div ref={dropdownRef}>
+    <div ref={dropdownRef} className='relative'>
           <div className=''>
               <button onClick={toggleDropdown}  className="flex items-center space-x-2 focus:outline-none">
-                  <img alt="" src="https://source.unsplash.com/100x100/?portrait" className="object-cover w-8 h-8 rounded-full shadow dark:bg-gray-500" />   
+                  <img alt="profile pic" src="https://4kwallpapers.com/images/walls/thumbs_3t/15138.jpg" className="object-cover w-8 h-8 rounded-full shadow dark:bg-gray-500" />   
               </button>
           </div>
 
 
           <div
-          className={` ${Dropdown ? '' : 'hidden'} absolute mt-6 top-9 lg:end-2 mx-10 w-56 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg dark:divide-gray-800 dark:border-gray-800 dark:bg-gray-900`}
+          className={` ${Dropdown ? '' : 'hidden'} transition transform duration-150 ease-out origin-top-right absolute mt-6 top-7 lg:end-1  w-56 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg dark:divide-gray-800 dark:border-gray-800 dark:bg-gray-900`}
           role="menu">
-          <div className="p-2">
-            <a
-              href="#"
-              className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
-              role="menuitem"
-            >
-              View on Storefront
-            </a>
-        
-            <a
-              href="#"
-              className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
-              role="menuitem"
-            >
-              View Warehouse Info
-            </a>
-        
-            <a
-              href="#"
-              className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
-              role="menuitem"
-            >
-              Duplicate Product
-            </a>
-        
-            <a
-              href="#"
-              className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
-              role="menuitem"
-            >
-              Unpublish Product
-            </a>
-          </div>
+            <div className="p-2">
+              
+             <ul>
+              {dropDownItems.map((item)=>(
+                  <li key={item.name} className=''>
+                      
+                      <NavLink to={item.href} className={`block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300`}>
+                          {item.name}
+                      </NavLink>
+                  </li>
+              ))}
+             </ul>
+             
+            </div>
         
           <div className="p-2">
             <form method="POST" action="#">
@@ -92,7 +87,7 @@ function ProfileDropdown() {
                   />
                 </svg>
         
-                Delete Product
+                Logout
               </button>
             </form>
           </div>

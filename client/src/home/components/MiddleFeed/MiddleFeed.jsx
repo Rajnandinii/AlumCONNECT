@@ -1,9 +1,33 @@
 import React from 'react'
+import Post from '../Post/Post'
 
-function MiddleFeed() {
+const MiddleFeed = () => {
   return (
     <div>
-        middle feed
+        <div className="flex flex-col items-center">
+             
+            <div className='mb-2'>
+              <Post/>
+            </div>
+
+            <div className='mb-2'>
+              <Post/>
+            </div>
+
+            <div className='mb-2'>
+              <Post/>
+            </div>
+
+            <div className='mb-2'>
+              <Post/>
+            </div>
+
+            <div className='mb-2'>
+              <Post/>
+            </div>
+             
+        </div>
+      
     </div>
   )
 }
