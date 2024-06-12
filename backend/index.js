@@ -4,8 +4,9 @@ import path from "path";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
-import authRoutes from './routes/authRoute.js'
 import connectDB from './db/connectDB.js'
+import authRoutes from './routes/authRoute.js'
+import postRoutes from './routes/postRoutes.js'
 
 dotenv.config();
 
@@ -23,6 +24,8 @@ app.use(express.json())
 
 //routes
 app.use('/api/auth', authRoutes)
+app.use('/api/post', postRoutes)
+
 //app.use('', otpRouter)
 //app.use('', submitotp)
 
