@@ -2,14 +2,14 @@ import User from '../models/userModel.js'
 
 import nodemailer from 'nodemailer'
 import bcrypt from 'bcrypt'
-import jwt from 'bcryptjs'
+import jwt from "jsonwebtoken";
 
 
 
 //REGISTER/SIGNUP USER -------------------------------------------------------------------------------------
 export const signup  = async (req, res) => {
     try {
-        const {name, username, email, password, usermode, gradyear, degree, branch, curaddress, peraddress, phone, interests} = req.body;
+        const { username, email, password} = req.body;
         const user =await User.findOne({email});
 
         if(user){
@@ -20,18 +20,11 @@ export const signup  = async (req, res) => {
         const hashedPassword= await bcrypt.hash(password, salt);
 
         const newUser = await User.create({
-            name,
+            
             username,
             email,  
-            password: hashedPassword,
-            usermode, 
-            gradyear,
-            degree,
-            branch,
-            curaddress,
-            peraddress,
-            phone, 
-            interests,
+            password: hashedPassword
+           
         });
 
         newUser.save()
@@ -65,7 +58,7 @@ export const login = async (req, res) => {
             return res.json({message: "password is invalid"});
         }
         
-        const token = jwt.sign({_id: user._id}, 'secretkey123',{
+        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET,{
             expiresIn: '90d',
         });
         res.cookie('token', token, {httpOnly: true,  maxAge: 36000});
@@ -227,3 +220,44 @@ export const submit_otp = (req, res)=>{
 
 
 // }
+
+
+export const followUnFollowUser = async (req, res) => {
+	try {
+		const { id } = req.params;
+		const userToModify = await User.findById(id);
+		const currentUser = await User.findById(req.user._id);
+
+		if (id === req.user._id.toString())
+			return res.status(400).json({ error: "You cannot follow/unfollow yourself" });
+
+		if (!userToModify || !currentUser) return res.status(400).json({ error: "User not found" });
+
+		const isFollowing = currentUser.followings.includes(id);
+
+		if (isFollowing) {
+			// Unfollow user
+			await User.findByIdAndUpdate(id, { $pull: { followers: req.user._id } });
+			await User.findByIdAndUpdate(req.user._id, { $pull: { followings: id } });
+			res.status(200).json({ message: "User unfollowed successfully" });
+		} else {
+			// Follow user
+			await User.findByIdAndUpdate(id, { $push: { followers: req.user._id } });
+			await User.findByIdAndUpdate(req.user._id, { $push: { followings: id } });
+			res.status(200).json({ message: "User followed successfully" });
+		}
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+		console.log("Error in followUnFollowUser: ", err.message);
+	}
+};
+
+export const logoutUser = (req, res) => {
+	try {
+		res.cookie("jwt", "", { maxAge: 1 });
+		res.status(200).json({ message: "User logged out successfully" });
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+		console.log("Error in logoutUser: ", err.message);
+	}
+};
