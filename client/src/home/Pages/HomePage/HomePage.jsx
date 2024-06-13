@@ -1,14 +1,13 @@
 import React from 'react'
 
-import { AddPostBtn, MiddleFeed,ProfileLeftSidebar, UpcomingEvents, Suggestions } from '../../components'
+import { AddPostBtn, MiddleFeed,ProfileLeftSidebar, UpcomingEvents, Suggestions, AddPost } from '../../components'
 
 const HomePage = () => {
   return (
     <>
-
       <main className="">
 
-        <div class="flex justify-center ">
+        <div className="flex justify-center ">
         
           <div className="flex items-start justify-center w-full max-w-[1100px] gap-5 ">
             

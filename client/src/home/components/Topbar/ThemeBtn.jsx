@@ -9,10 +9,10 @@ const hover_color = import.meta.env.VITE_HOVER_COLOR;
 
 function ThemeBtn() {
     
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
     
     const changeTheme =() =>{
-         dispath(toggleTheme())
+         dispatch(toggleTheme())
      }
 
 
