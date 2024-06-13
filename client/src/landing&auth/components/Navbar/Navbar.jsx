@@ -43,7 +43,7 @@ function Navbar(){
   }
 
   return (
-    <div className="fixed z-50 w-full bg-gray-50 dark:bg-gray-900 dark:text-gray-200" >
+    <div className="fixed z-20 w-full bg-gray-50 dark:bg-gray-900 dark:text-gray-200" >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
 
         <div className="inline-flex items-center space-x-2 p-2">

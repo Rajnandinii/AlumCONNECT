@@ -49,16 +49,16 @@ const ProfileLeftSidebar = () => {
                 </div>
 
         		<div className="flex justify-center pt-2 space-x-4 align-center">
-        			<Link rel="noopener noreferrer" href="#" aria-label="GitHub" className={`p-2 rounded-md dark:text-gray-100 text-gray-800 hover:text-${theme_color}`}>
+        			<Link rel="noopener noreferrer" to="#" aria-label="GitHub" className={`p-2 rounded-md dark:text-gray-100 text-gray-800 hover:text-${theme_color}`}>
                         <FaGithub className='w-4 h-4 fill-current'/>
         			</Link>
-        			<Link rel="noopener noreferrer" href="#" aria-label="Dribble" className={`p-2 rounded-md dark:text-gray-100 text-gray-800 hover:text-${theme_color}`}>
+        			<Link rel="noopener noreferrer" to="#" aria-label="Dribble" className={`p-2 rounded-md dark:text-gray-100 text-gray-800 hover:text-${theme_color}`}>
         				<FaLinkedin className='w-4 h-4 fill-current'/>
         			</Link>
-        			<Link rel="noopener noreferrer" href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=abc@abc.com" target="_blank" aria-label="Twitter" className={`p-2 rounded-md dark:text-gray-100 text-gray-800 hover:text-${theme_color}`}>
+        			<Link rel="noopener noreferrer" to="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=abc@abc.com" target="_blank" aria-label="Twitter" className={`p-2 rounded-md dark:text-gray-100 text-gray-800 hover:text-${theme_color}`}>
         				<SiGmail className='w-4 h-4 fill-current'/>
         			</Link>
-        			<Link rel="noopener noreferrer" href="#" aria-label="Email" className={`p-2 rounded-md dark:text-gray-100 text-gray-800 hover:text-${theme_color}`}>
+        			<Link rel="noopener noreferrer" to="#" aria-label="Email" className={`p-2 rounded-md dark:text-gray-100 text-gray-800 hover:text-${theme_color}`}>
                         <FaInstagram className='w-4 h-4 fill-current'/>  
         			</Link>
         		</div>

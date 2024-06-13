@@ -57,13 +57,13 @@ function Topbar() {
     
   return (
     <> 
-       <div ref={sideMenuRef} className={`fixed top-0 left-0 h-full z-50 flex flex-col justify-between transform ${IsMenuOpen? 'translate-x-0':'-translate-x-full'} transition-transform duration-300 ease-in-out`}>
+       <div ref={sideMenuRef} className={`fixed top-0 left-0 h-full z-30 flex flex-col justify-between transform ${IsMenuOpen? 'translate-x-0':'-translate-x-full'} transition-transform duration-300 ease-in-out`}>
             <SideMenu  toggleMenu={toggleSideMenu}/>
        </div>
 
        <div>
            
-            <header className="fixed z-40 w-full shadow-lg bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+            <header className="fixed z-20 w-full shadow-lg bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
             	<div className="flex items-center mx-auto justify-between max-w-7xl  h-16 pl-10 pr-3">
 
                     <div className='items-start hidden lg:flex'>
