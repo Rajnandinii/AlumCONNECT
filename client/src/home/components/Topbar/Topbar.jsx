@@ -26,7 +26,7 @@ function Topbar() {
     useEffect(()=>{
        const closeSideMenuOutside = (e) =>{
            if (IsMenuOpen && !sideMenuRef.current.contains(e.target) && !menuBtnRef.current.contains(e.target)) {
-                console.log('closing side menu when clicked outside')
+                //console.log('closing side menu when clicked outside')
                 setIsMenuOpen(false);
             }
        }
@@ -103,7 +103,7 @@ function Topbar() {
             			    		</button>
             			    	</span>
     
-            			    	<input type="search" name="Search" placeholder="Search..." className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-800 focus:bg-gray-100 focus:dark:bg-gray-200" />
+            			    	<input type="search" name="Search" placeholder="Search..." className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-800 focus:bg-gray-100 focus:dark:bg-gray-950 dark:focus:text-gray-100" />
             			    </div>
                             
                             <div className='flex items-center pl-4'>     

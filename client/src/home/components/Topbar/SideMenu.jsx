@@ -1,12 +1,56 @@
 import React, { useEffect } from 'react'
 import {useRef} from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import {X, Home, MessageSquareMore, Bell, Bookmark, Bolt, LogOut} from 'lucide-react'
+import axios from 'axios';
+import { logoutRedux } from '../../../redux/features/authSlice';
+import { toggleLoading } from '../../../redux/features/loadingSlice';
+
+import { toast} from 'react-toastify'
+import { useDispatch, useSelector } from 'react-redux';
 
 const theme_color = import.meta.env.VITE_THEME_COLOR;
 const hover_color = import.meta.env.VITE_HOVER_COLOR;
+const serverURL = import.meta.env.VITE_SERVER_URL
 
 const SideMenu = ({ toggleMenu}) => {
+    
+    const {user} = useSelector((state)=>state.auth)
+    
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    function wait(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+     }
+
+    const handleLogout = async () =>{
+
+        dispatch(toggleLoading())
+
+        try{
+
+            const response = await axios.post(`${serverURL}/api/auth/logout`,{}, {withCredentials:true})
+            
+            if(!response.data.success){
+                toast.error(`Error Logging out`, {className:'dark:bg-gray-800 bg-gray-200 '})
+            }
+
+            toast.warning('Logging Out', {className:'dark:bg-gray-800 bg-gray-200 ', autoClose:2000})
+            await wait(2000)
+
+            localStorage.removeItem("userInfo"); 
+            dispatch(logoutRedux())
+
+            navigate('/')
+
+        }
+        catch(error){
+            console.log(error)
+            toast.error('An error occurred', { className: 'dark:bg-gray-800 bg-gray-200' })
+        }finally{
+            dispatch(toggleLoading())
+        }
+    }
   
     const sideMenuItems = [
       {   name:"Home",
@@ -29,14 +73,13 @@ const SideMenu = ({ toggleMenu}) => {
           href:"/settings",
           icon:Bolt,
       },
-      {   name:"Logout",
-          href:"/logout",
-          icon:LogOut,
-      },
+      
     ]  
 
     //fixed top-0 left-0 h-full z-50 
   return (
+    <>
+        
         
         <div className={`flex flex-col justify-between  p-3 w-64 h-screen bg-gray-50 shadow-2xl dark:bg-slate-800 text-gray-800 dark:text-gray-200`}>
         	<div className="space-y-3">
@@ -56,7 +99,7 @@ const SideMenu = ({ toggleMenu}) => {
         					</svg>
         				</button>
         			</span>
-        			<input type="search" name="Search" placeholder="Search..." className="w-full py-2 pl-10 text-sm dark:border- rounded-md focus:outline-none bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-800 focus:bg-gray-100 focus:dark:bg-gray-50" />
+        			<input type="search" name="Search" placeholder="Search..." className="w-full py-2 pl-10 text-sm dark:border- rounded-md focus:outline-none bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-800 focus:bg-gray-100 focus:dark:bg-gray-950 dark:focus:text-gray-100" />
         		</div>
 
                 <div className='divide-y dark:divide-gray-600 divide-gray-400'>
@@ -75,6 +118,13 @@ const SideMenu = ({ toggleMenu}) => {
         					    </NavLink>
                             </li>
                         ))}
+
+                        <li key='logout' className={`rounded-lg hover:bg-${hover_color} dark:hover:bg-${theme_color} dark:hover:bg-opacity-20 hover:bg-opacity-60`}>
+                                <button onClick={handleLogout} className={` dark:text-gray-100 text-gray-600 flex items-center tracking-wider font-medium dark:font-normal p-2 space-x-3 rounded-md`}>
+                                    <LogOut  className='size-6'/>
+        					    	<span>Log Out</span>
+        					    </button>
+                        </li>
         				
         			</ul>
         		</div>
@@ -83,7 +133,7 @@ const SideMenu = ({ toggleMenu}) => {
         	<div className=" flex items-center p-2 mt-12 space-x-4 justify-self-end">
         		<img src="https://4kwallpapers.com/images/walls/thumbs_3t/15138.jpg" alt="" className="w-12 h-12 object-cover rounded-full shadow dark:bg-gray-500" />
         		<div>
-        			<h2 className="text-lg font-semibold">Username</h2>
+        			<h2 className="text-lg font-semibold">{user.name}</h2>
         			<span className="flex items-center space-x-1">
         				<a rel="noopener noreferrer" href="#" className="text-xs hover:underline text-gray-400 dark:text-gray-600">View profile</a>
         			</span>
@@ -91,7 +141,7 @@ const SideMenu = ({ toggleMenu}) => {
         	</div>
 
         </div>
-              
+    </>          
     
   )
 }

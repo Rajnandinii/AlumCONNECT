@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -13,6 +13,7 @@ import {HomePage} from "./home/Pages"
 function App() {
 
   const theme = useSelector((state) => state.colorTheme.theme);
+  const {isAuth} = useSelector((state)=>state.auth)
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
@@ -26,16 +27,16 @@ function App() {
         <Route element={<LandingLayout />}>
           <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
-          <Route path="/Contact" element={<Contact />} />
+          <Route path="/contact" element={<Contact />} />
         </Route>
 
         <Route path="/signup" element={<SignUp/>} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="/login" element={isAuth? <Navigate to={"/feed"}/> : <Login/>} />
 
         {/* private routes */}
 
         <Route element={<HomeLayout />}>
-          <Route path="/feed" element={<HomePage />} />
+          <Route path="/feed" element={isAuth ? <HomePage /> : <Navigate to={"/login"}/>} />
           {/* <Route path="/explore" element={<Explore />} />
           <Route path="/saved" element={<Saved />} />
           <Route path="/all-users" element={<AllUsers />} /> */}

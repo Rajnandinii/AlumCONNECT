@@ -16,6 +16,7 @@ const app = express()
 const corsOptions ={
     origin: process.env.CLIENT_URI,  //go to .env make a variable CLIENT_URI (if not made) and paste client host url
     credentials:true,            //access-control-allow-credentials:true
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'User-Agent', 'DNT', 'Cache-Control', 'X-Mx-ReqToken', 'Keep-Alive', 'X-Requested-With', 'If-Modified-Since', 'X-CSRFToken'],
     optionSuccessStatus:200
 }
 app.use(cors(corsOptions));

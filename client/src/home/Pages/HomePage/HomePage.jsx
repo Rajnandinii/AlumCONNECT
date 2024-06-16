@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { AddPostBtn, MiddleFeed,ProfileLeftSidebar, UpcomingEvents, Suggestions, AddPost } from '../../components'
+const theme_color = import.meta.env.VITE_THEME_COLOR
 
 const HomePage = () => {
   return (

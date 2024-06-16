@@ -80,18 +80,18 @@ function Navbar(){
           </ul>
         </div>
 
-        <div className="hidden space-x-2 lg:block">
+        <div className="hidden space-x-2 lg:flex items-stretch justify-center h-full">
           <button
             type="button"
-            className={`rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black dark:text-gray-200 hover:bg-${hover_color} dark:hover:bg-${theme_color} dark:hover:bg-opacity-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black`}
+            className={`rounded-md bg-transparent text-sm font-semibold text-black dark:text-gray-200 hover:bg-${hover_color} dark:hover:bg-${theme_color} dark:hover:bg-opacity-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black`}
           >
-            <Link to={"/login"}>Log In</Link>
+            <Link to={"/login" } className="mx-3 my-2">Log In</Link>
           </button>
           <button
             type="button"
             className={`rounded-md border border-${theme_color} px-3 py-2 text-sm font-semibold text-${theme_color}  shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black`}
           >
-            <Link to={"/signup"}>Sign Up</Link>
+            <Link to={"/signup"} >Sign Up</Link>
           </button>
     
         </div>
@@ -192,16 +192,16 @@ function Navbar(){
                 <div className="mt-5 space-y-2">
                   <button
                     type="button"
-                    className={`w-full rounded-md border border-${theme_color} px-3 py-2 text-sm font-semibold text-black dark:text-gray-200 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black`}
+                    className={`w-full flex items-center justify-center rounded-md border border-${theme_color} text-sm font-semibold text-black dark:text-gray-200 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black`}
                   >
-                     <Link to="/login">Log In</Link>
+                     <Link to="/login" className="w-full my-2 h-full">Log In</Link>
                     
                   </button>
-                  <button
-                    type="button"
-                    className={`w-full rounded-md bg-${theme_color} px-3 py-2 text-sm font-semibold dark:text-gray-200 text-white dark:hover:text-gray-200 hover:text-black shadow-sm hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black`}
+                  <button 
+                    type="buttton"
+                    className={`w-full flex items-center justify-center rounded-md bg-${theme_color}  text-sm font-semibold dark:text-gray-200 text-white dark:hover:text-gray-200 hover:text-black shadow-sm hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black`}
                   >
-                    <Link to={"/signup"}>Sign Up</Link>
+                    <Link to={'/signup'} className="w-full my-2 h-full">Sign Up</Link>
                   </button>
                 </div>
               </div>

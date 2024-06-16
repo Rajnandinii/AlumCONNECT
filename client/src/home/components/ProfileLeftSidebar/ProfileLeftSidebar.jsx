@@ -2,11 +2,14 @@ import React from 'react'
 import {FaGithub, FaLinkedin, FaInstagram, FaArrowRight, FaChevronRight} from 'react-icons/fa'
 import {SiGmail} from 'react-icons/si'
 import { Link, NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const theme_color = import.meta.env.VITE_THEME_COLOR;
 const hover_color = import.meta.env.VITE_HOVER_COLOR;
 
 const ProfileLeftSidebar = () => {
+
+  const {user} = useSelector((state)=> state.auth)
   
 
   return (
@@ -17,7 +20,7 @@ const ProfileLeftSidebar = () => {
         	
             <div className="space-y-4 text-center divide-y divide-gray-700">
         		<div className="my-2 space-y-1">
-        			<h2 className="text-xl font-semibold sm:text-2xl">Thorfinn</h2>
+        			<h2 className="text-xl font-semibold sm:text-2xl">{user.name}</h2>
         			<p className="px-2 text-sm dark:text-gray-400 text-gray-500">Full-stack developer</p>
         		</div>
                 
