@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { CircleChevronLeft } from 'lucide-react';
 
 const theme_color = import.meta.env.VITE_THEME_COLOR;
-const hover_color = import.meta.env.VITE_HOVER_COLOR;
+const serverURL = import.meta.env.VITE_SERVER_URL;
 
 const SignUp = () => {
     
@@ -62,7 +62,7 @@ const SignUp = () => {
       
       try{
 
-        const response = await axios.post("http://localhost:3000/api/auth/signup",
+        const response = await axios.post(`${serverURL}/api/auth/signup`,
                                           {otp:otp_to_send ,name:formData.name , username:formData.username , email: formData.email, password: formData.password, role: formData.userType, gradyear: formData.gradyear, degree: formData.course, branch: formData.branch},
                                           {withCredentials: true,})
         
@@ -122,7 +122,7 @@ const SignUp = () => {
     //send otp ----------------------------------
     const sendOTP = async ()=>{
         try{
-            const response = await axios.post('http://localhost:3000/api/auth/send-otp', {email:formData.email, name:formData.name},
+            const response = await axios.post(`${serverURL}/api/auth/send-otp`, {email:formData.email, name:formData.name},
                                                                                          {withCredentials: true,})
             if(!response.data.success){
                 toast.error(`${response.data.message}`, {className:'dark:bg-gray-800 bg-gray-200 '})
@@ -163,7 +163,7 @@ const SignUp = () => {
 
     const checkFromServer = async (username) =>{
         try{
-           const response = await axios.get('http://localhost:3000/api/auth/check-username', {
+           const response = await axios.get(`${serverURL}/api/auth/check-username`, {
               params: {username}
            })
            setIsUsernameAvail(response.data.avail)

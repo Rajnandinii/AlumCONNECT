@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { loginRedux } from '../../../redux/features/authSlice';
 const theme_color = import.meta.env.VITE_THEME_COLOR;
-const hover_color = import.meta.env.VITE_HOVER_COLOR;
+const serverURL = import.meta.env.VITE_SERVER_URL;
 
 function Login() {
 
@@ -36,7 +36,7 @@ function Login() {
 
      try{
        setLoading(true)
-       const response = await axios.post('http://localhost:3000/api/auth/login', {username:formData.username, password:formData.password},
+       const response = await axios.post(`${serverURL}/api/auth/login`, {username:formData.username, password:formData.password},
                                                                                  {withCredentials: true,} )
        
        if(!response.data.success){
