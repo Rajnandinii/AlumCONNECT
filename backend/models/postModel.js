@@ -4,13 +4,17 @@ const postSchema = new mongoose.Schema({
 
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      refPath: 'userType', // reference path..referencing to next field 'userType' ... if userType is student, mongodb will refrence to Student collection
+      ref: 'User', 
       required: true,
     },
     userType: {
       type: String,
       required: true,
-      enum: ['Student', 'Alumni'], 
+      enum: ['admin', 'student', 'alumni'],
+    },
+    username: {
+      type: String,
+      required:true
     },
     title: {
       type: String,
@@ -18,8 +22,8 @@ const postSchema = new mongoose.Schema({
     description: {
       type: String,
     },
-    img: {
-	  type: String,
+    postImg: {
+	    type: String,       //cloudinary url
     },
 
     likes: [{

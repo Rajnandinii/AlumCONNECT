@@ -22,6 +22,11 @@ const UserSchema = new mongoose.Schema(
       required: true,
       minlength: 6, // Updated to minlength
     },
+    posts:[{
+      type: mongoose.Schema.Types.ObjectId,
+			ref: "Post",
+			default: [], 
+    }],
     otp: {
       type: Number
     },

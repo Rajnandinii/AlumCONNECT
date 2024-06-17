@@ -4,6 +4,9 @@ import { useDispatch } from 'react-redux';
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { CloudUpload } from 'lucide-react';
 import { togglePostForm } from '../../../redux/features/postFormToggleSlice';
+import { toggleLoading } from '../../../redux/features/loadingSlice';
+import { toast} from 'react-toastify'
+import axios from 'axios';
 
 const theme_color = import.meta.env.VITE_THEME_COLOR;
 const hover_color = import.meta.env.VITE_HOVER_COLOR;
@@ -31,7 +34,8 @@ const Postform = () => {
   const [isCreateBtnDisabled, setIsCreateBtnDisabled] = useState(true)
   const [title, setTitle] =useState('')
   const [desc, setDesc] = useState('')
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(null); //for showing in frontend
+  const [postImg, setPostImg] = useState(null)
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value)
@@ -62,6 +66,7 @@ const Postform = () => {
       setError('Please upload a valid image file (JPEG, PNG)');
       return;
     }
+    setPostImg(file)
     setError('');
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -74,6 +79,7 @@ const Postform = () => {
   const handleDrop = (e) => {
     e.preventDefault();
     const files = e.dataTransfer.files;
+    console.log('drop')
     if (files && files[0]) {
       handleImageUpload(files[0]);
     }
@@ -88,6 +94,7 @@ const Postform = () => {
 
   const removeImg = ()=>{
     setImage(null)
+    setPostImg(null)
     if(imgInputRef.current){
       imgInputRef.current.value = '';
     }
@@ -96,15 +103,44 @@ const Postform = () => {
   //handle confirm/submit logic--------------------------------------------------------------------------
   const [isPinging, setIsPinging] = useState(false);
 
+  function wait(ms){
+    return new Promise(resolve => setTimeout(resolve,ms))
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsPinging(true);
+    dispatch(toggleLoading())
+    //setIsPinging(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try{
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('desc', desc);
+        formData.append('postImg', postImg);
+        const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/post/createPost`,formData, 
+                                                                                                   {withCredentials:true,
+                                                                                                    headers: {
+                                                                                                      'Content-Type': 'multipart/form-data' 
+                                                                                                    }
+                                                                                                   })
+        dispatch(toggleLoading())
+        toast.success('Your Post is uploaded', { className: 'dark:bg-gray-800 bg-gray-200' })
+        setIsPinging(true)
+        await wait(1000)
+        setIsPinging(false)
+        
+        dispatch(togglePostForm())
 
-    setIsPinging(false);
-    //alert('Form submitted');
+    }catch(error){
+      if(error.response){
+        toast.error(error.response.data.message, { className: 'dark:bg-gray-800 bg-gray-200' })
+      }
+      else{
+        toast.error('Error occcured', { className: 'dark:bg-gray-800 bg-gray-200' })
+      }
+      dispatch(toggleLoading())
+    }
+
   }; 
 
   //-------------------------------------------------------------------------------------------------------
