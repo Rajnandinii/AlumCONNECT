@@ -1,7 +1,7 @@
 import express from 'express';
 import protectRoute from '../middlewares/protectRoute.js';
 import { upload } from '../middlewares/multerMiddleware.js';
-import { createPost, getAllPosts } from '../controllers/postsController.js';
+import { createPost, getPosts } from '../controllers/postsController.js';
 
 
 const router = express.Router();
@@ -10,7 +10,7 @@ router.post("/createPost", protectRoute, upload.fields([{name:'postImg', maxCoun
 // router.post("/commentOnPost/:id", commentOnPost); 
 // router.post("/likePost/:id", likeUnlikePost);
 
-router.get("/getAllPosts",protectRoute, getAllPosts);
+router.get("/getPosts",protectRoute, getPosts);
 // router.get("/followingPosts", followingPosts);   //posts of people we follow
 // router.get("/deletePost/:id", deletePost);
 

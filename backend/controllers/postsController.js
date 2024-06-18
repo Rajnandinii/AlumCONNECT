@@ -36,6 +36,12 @@ export const createPost = async (req,res) => {
             return res.status(500).json({message:'Something went wrong while uploading', success:false})
         }
 
+        const updatedUser = await User.findOneAndUpdate(
+            user._id,
+            { $push: { posts: createdPost._id } },
+            { new: true } 
+        );
+
         return res.status(201).json({message:'Post uploaded successfully', success:true})
 
     }
@@ -45,15 +51,23 @@ export const createPost = async (req,res) => {
     }
 }
 
-export const getAllPosts = async (req,res) =>{
+export const getPosts = async (req,res) =>{
     try{
+        const { type } = req.query;
         const user = req.user
-        const posts = await Post.find().sort({ "timestamp.createdAt" : -1 }).exec();
+        let posts
+        if(type==='All'){
+            posts = await Post.find().sort({ "timestamp.createdAt" : -1 }).exec();
+        }
+        else{
+            posts = await Post.find({userType: type.toLowerCase()}).sort({ "timestamp.createdAt" : -1 }).exec();
+        }
+        //console.log(type)
         if(!posts){
             return res.status(500).json({message:"Couldn't load posts", success:false})
         }
         res.status(201).json({posts:posts, 
-                              message:"All post are loaded", 
+                              message:"Post are loaded", 
                               success:true})
     }
     catch(error){
@@ -61,3 +75,4 @@ export const getAllPosts = async (req,res) =>{
         return res.status(500).json({message:"Failed to Load Pots", success:false})
     }
 }
+
