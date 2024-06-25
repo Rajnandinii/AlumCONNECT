@@ -24,6 +24,7 @@ function App() {
     <>
       <Routes>
         {/* public routes */}
+        
         <Route element={<LandingLayout />}>
           <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />

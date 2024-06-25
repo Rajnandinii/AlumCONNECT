@@ -14,7 +14,7 @@ function HomeLayout() {
 
     return (
       <>
-        <div className={`w-full min-h-screen md:flex dark:bg-gray-950 bg-gray-200 `}>
+        <div className={`w-full min-h-screen md:flex dark:bg-gray-950 bg-gray-200`}>
              {loading && <div className='absolute z-50 w-full h-full flex items-center justify-center'>
                               <div className='backdrop-blur-sm backdrop-brightness-75 w-full h-full flex items-center justify-center'>
                                   <div className={`w-16 h-16 border-4 border-dashed rounded-full  animate-spin border-${theme_color}`}></div>

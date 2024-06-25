@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState, useEffect, useRef} from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
 function ProfileDropdown() {
-  
+  const {user} = useSelector((state)=> state.auth)
   //for dropdown 
   const [Dropdown, setDropdown] = useState(false)
   const toggleDropdown = () =>{
@@ -42,7 +43,7 @@ function ProfileDropdown() {
     <div ref={dropdownRef} className='relative'>
           <div className=''>
               <button onClick={toggleDropdown}  className="flex items-center space-x-2 focus:outline-none">
-                  <img alt="profile pic" src="https://4kwallpapers.com/images/walls/thumbs_3t/15138.jpg" className="object-cover w-8 h-8 rounded-full shadow dark:bg-gray-500" />   
+                  <img alt="profile pic" src={user.profilePicture} className="object-cover w-8 h-8 rounded-full shadow dark:bg-gray-500" />   
               </button>
           </div>
 

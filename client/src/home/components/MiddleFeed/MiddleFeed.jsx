@@ -1,12 +1,13 @@
 import React from 'react'
 import Post from '../Post/Post'
 import LoadingPost from '../Post/LoadingPost'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 //import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import { useSearchParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import Tabs from './Tabs'
+import PostWithComment from '../Post/CommentSection/PostWithComment'
 
 const theme_color = import.meta.env.VITE_THEME_COLOR
 
@@ -21,9 +22,9 @@ const MiddleFeed = () => {
     return new Promise(resolve=> setTimeout(resolve,ms))
   }
 
-  const getPosts = async ()=>{     
+  const getPosts = async ()=>{     //fetch posts (all, student or alumni)
     setFeedLoading(true)
-    //console.log(whichPosts)
+    
     try{
 
       const response= await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/post/getPosts?type=${whichPosts}`, {withCredentials:true})
@@ -47,15 +48,24 @@ const MiddleFeed = () => {
   },[whichPosts])
 
   const handleClick = async (type)=>{   
-
     if(type===whichPosts){
         return null
     }
     setWhichPosts(type)
-    
   }
-  
-  
+
+  //FOR COMMENT SECTION-----------------------------------------------------------------------------
+  const [activePost, setActivePost] = useState(null)
+
+  const handleCommentOpen = (post)=>{
+    document.body.classList.add('scroll-lock');
+    setActivePost(post);
+  }
+
+  const handleCommentClose = ()=>{
+    document.body.classList.remove('scroll-lock');
+    setActivePost(null)
+  }
 
 
   return (
@@ -75,10 +85,16 @@ const MiddleFeed = () => {
                 {posts.map((post)=>(
                   post?
                       <div key={post._id} className='mb-2 w-full flex flex-col items-center'>
-                        <Post post={post}/>
+                        <Post post={post} onCommentClick={()=>handleCommentOpen(post)}/>
                       </div>
                      :    <div>deleted</div>
                 ))} 
+              </div>
+            }
+
+            {activePost && 
+              <div className='' >
+                <PostWithComment post={activePost} onClose={handleCommentClose} />
               </div>
             }
            

@@ -147,7 +147,7 @@ const Postform = () => {
 
   return (
     <div>
-      <form className='dark:bg-gray-800 bg-gray-100 w-[350px] sm:w-[500px] border dark:border-gray-700 border-gray-400 rounded-lg shadow-2xl'>
+      <form className='dark:bg-gray-900 bg-gray-100 w-[350px] sm:w-[500px] border dark:border-gray-800 border-gray-400 rounded-lg shadow-2xl'>
 
         <div className='relative flex flex-col items-stretch justify-start '>
 
@@ -159,14 +159,14 @@ const Postform = () => {
                 <label htmlFor='title' className='flex justify-start text-sm dark:text-gray-400 text-gray-800 mb-1'>
                    Title
                 </label>
-                <input onChange={handleTitleChange} id='title' type='text' placeholder='Add a Title for your post...' className=' w-full rounded-md py-1 px-2 text-md dark:text-gray-50 dark:bg-gray-700  bg-gray-50 dark:focus:bg-gray-900 focus:bg-gray-200 outline-none border dark:border-gray-600 border-gray-300 dark:focus:border-gray-700  focus:border-gray-200'/>
+                <input onChange={handleTitleChange} id='title' type='text' placeholder='Add a Title for your post...' className=' w-full rounded-md py-1 px-2 text-md dark:text-gray-50 dark:bg-gray-800  bg-gray-50 dark:focus:bg-gray-950 focus:bg-gray-200 outline-none border dark:border-gray-700 border-gray-300 dark:focus:border-gray-700  focus:border-gray-200'/>
             </div>
 
             <div className='flex flex-col items-stretch  p-4'>
                 <label htmlFor='description' className='flex justify-start text-sm dark:text-gray-400 text-gray-800 mb-1'>
                    Description
                 </label>
-                <textarea onChange={handleDescChange} id='description' type='text' placeholder='Add a description...' className='w-full rounded-md h-20 min-h-20 max-h-40 py-1 px-2 text-md dark:text-gray-50 dark:bg-gray-700  bg-gray-50 dark:focus:bg-gray-900 focus:bg-gray-200 outline-none border dark:border-gray-600 border-gray-300 dark:focus:border-gray-700  focus:border-gray-200'></textarea>
+                <textarea onChange={handleDescChange} id='description' type='text' placeholder='Add a description...' className='w-full rounded-md h-20 min-h-20 max-h-40 py-1 px-2 text-md dark:text-gray-50 dark:bg-gray-800  bg-gray-50 dark:focus:bg-gray-950 focus:bg-gray-200 outline-none border dark:border-gray-700 border-gray-300 dark:focus:border-gray-700  focus:border-gray-200'></textarea>
             </div>
             
             <div className="flex flex-col items-stretch justify-center w-full p-4">
@@ -179,7 +179,7 @@ const Postform = () => {
 
                 </div>
 
-                <label htmlFor="dropzone-file" className={`flex flex-col items-center justify-center w-full border-2  ${image? 'dark:border-gray-600 border-gray-200' : 'border-dashed border-gray-300'} rounded-md cursor-pointer bg-gray-50  dark:bg-gray-700 hover:bg-gray-200 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600`}>
+                <label htmlFor="dropzone-file" className={`flex flex-col items-center justify-center w-full border-2  ${image? 'dark:border-gray-700 border-gray-200' : 'border-dashed border-gray-300'} rounded-md cursor-pointer bg-gray-50  dark:bg-gray-800 hover:bg-gray-200 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600`}>
                   <div onDrop={handleDrop} onDragOver={(e) => e.preventDefault()} className={`flex flex-col items-center justify-center `}>
                     {!image && (
                       <>

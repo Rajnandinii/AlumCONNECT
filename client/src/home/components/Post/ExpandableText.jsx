@@ -22,8 +22,8 @@ const ExpandableText = ({ text}) => {
          
 
          <div className='flex justify-end '>
-            <button onClick={toggleExpand} className='dark:text-gray-600'>
-               {isExpanded? <ChevronUp className='size-5'/> : <ChevronDown className='size-5'/>}
+            <button onClick={toggleExpand} className='dark:text-gray-600 text-gray-400'>
+               {isExpanded? <ChevronUp className='size-5 '/> : <ChevronDown className='size-5'/>}
             </button>
          </div>
 

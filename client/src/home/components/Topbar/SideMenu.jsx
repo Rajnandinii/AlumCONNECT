@@ -131,7 +131,7 @@ const SideMenu = ({ toggleMenu}) => {
         	</div>
 
         	<div className=" flex items-center p-2 mt-12 space-x-4 justify-self-end">
-        		<img src="https://4kwallpapers.com/images/walls/thumbs_3t/15138.jpg" alt="" className="w-12 h-12 object-cover rounded-full shadow dark:bg-gray-500" />
+        		<img src={user.profilePicture} alt="" className="w-12 h-12 object-cover rounded-full shadow dark:bg-gray-500" />
         		<div>
         			<h2 className="text-lg font-semibold">{user.name}</h2>
         			<span className="flex items-center space-x-1">
