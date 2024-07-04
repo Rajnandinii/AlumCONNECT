@@ -46,7 +46,7 @@ function Topbar() {
             icon:Home,
         },
         {   name:"Chat",
-            href:"/chat",
+            href:"/chatsection",
             icon:Send, 
         },
         {   name:"Alerts",

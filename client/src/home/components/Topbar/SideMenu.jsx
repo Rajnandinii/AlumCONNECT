@@ -58,7 +58,7 @@ const SideMenu = ({ toggleMenu}) => {
           icon:Home,
       },
       {   name:"Chat",
-          href:"/chat",
+          href:"/chatsection",
           icon:MessageSquareMore, 
       },
       {   name:"Alerts",

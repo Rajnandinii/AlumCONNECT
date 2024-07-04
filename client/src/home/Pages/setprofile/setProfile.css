@@ -1,0 +1,61 @@
+
+
+
+  .setprofile-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #13181e;
+  }
+  
+  .setprofile-content {
+    width: 50%;
+    max-width: 600px;
+    background-color: #1f2937; 
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #e5e7eb; 
+  }
+  .heading{
+    font-size: larger;
+    text-align: center;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #4b5563; 
+    border-radius: 0.25rem;
+    background-color: #374151; 
+    color: #e5e7eb;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+  }
+  
+  .btn-primary {
+    background-color: #3b82f6;
+    color: white;
+  }
+  
+  .btn-secondary {
+    background-color: #6b7280;
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .setprofile-content {
+      width: 100%;
+    }
+  }  

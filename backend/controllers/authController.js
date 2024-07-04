@@ -343,3 +343,45 @@ export const logoutUser = (req, res) => {
 		console.log("Error in logoutUser: ", err.message);
 	}
 };
+
+
+//get friends
+// 
+export const getFriends = async (req, res) => {
+  
+    try {
+      const user = await User.findById(req.params.id);
+      const friends = await Promise.all(
+        user.followings.map((friendId) => {
+          return User.findById(friendId);
+        })
+      );
+    
+      let friendList = [];
+      friends.map((friend) => {
+        const { _id, username, profilePicture } = friend;
+        friendList.push({ _id, username, profilePicture });
+      });
+      res.status(200).json(friendList)
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  };
+  
+//get a user
+// router.get('/:id',
+export const getuser = async (req, res)=>{
+
+    try {
+    
+      const user = await User.findById(req.params.id).select("-password"); 
+
+      res.status(200).json(user);
+   
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("internal server error ");
+    }
+
+}
+  
