@@ -4,6 +4,7 @@ import { AddPostBtn, MiddleFeed,ProfileLeftSidebar, UpcomingEvents, Suggestions,
 const theme_color = import.meta.env.VITE_THEME_COLOR
 
 const HomePage = () => {
+  // console.log('home')
   return (
     <>
       <main className="">

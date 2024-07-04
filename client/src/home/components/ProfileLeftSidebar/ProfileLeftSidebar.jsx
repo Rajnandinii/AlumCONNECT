@@ -41,6 +41,7 @@ const ProfileLeftSidebar = () => {
     <div className='flex flex-col items-center'>
 
         <div className="flex flex-col items-center w-full p-6 pb-2 shadow-md rounded-lg dark:bg-gray-900 bg-gray-50 dark:text-gray-100 text-gray-800 border border-gray-300 dark:border-gray-800">
+
         	<img src={profile.profilePicture} alt="" className="w-32 h-32 mx-auto object-cover rounded-full bg-gray-500 aspect-square" />
         	
             <div className="space-y-4 text-center divide-y divide-gray-700">
