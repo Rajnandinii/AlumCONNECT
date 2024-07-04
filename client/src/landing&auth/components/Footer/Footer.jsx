@@ -9,8 +9,8 @@ function Footer(){
         
           <div className="bottom-0">  
             <div className="bg-gray-200 dark:bg-gray-950">
-                <div Name="w-screen flex ">
-                  <svg Name=" bottom-0" viewBox="0 0 1425 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div className="w-screen flex ">
+                  <svg className=" bottom-0" viewBox="0 0 1425 110" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g>
                       <path d="M0,17.27l23.75,5.09C47.5,27.38,95,37.57,142.5,39.47s95-4.36,142.5-10.28,95-11.35,142.5-7.4,95,17.43,142.5,24,95,6.25,142.5,5.83,95-.9,142.5-3S950,43,997.5,42.92s95,3.12,142.5,2.88,95-4.11,142.5-3.62,95,5.51,118.75,8L1425,52.62v170.2H0Z" fill="currentColor" className={`text-${theme_color} text-opacity-10`}></path>
                       <path d="M0,94.56l23.75-6.17C47.5,82.22,95,69.89,142.5,65.2s95-1.64,142.5,4.85S380,86.33,427.5,86.5,522.5,77,570,73.59s95-.66,142.5,1.81,95,4.6,142.5,3.78,95-4.6,142.5-6.58,95-1.89,142.5,1.24,95,9.45,142.5,13.15,95,4.85,118.75,5.35l23.75.57V222.82H0Z" fill="currentColor" className={`text-${theme_color} text-opacity-25`}></path>
