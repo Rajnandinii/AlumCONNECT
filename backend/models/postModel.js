@@ -16,6 +16,10 @@ const postSchema = new mongoose.Schema({
       type: String,
       required:true
     },
+    profilePic:{
+      type: String,
+      default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+    },
     title: {
       type: String,
     },
@@ -29,35 +33,40 @@ const postSchema = new mongoose.Schema({
     likes: [{
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            refPath: 'likes.userTypeOfWhoLiked',
+            ref: 'User',
             required: true,
-        },
-        userTypeofWhoLiked: {
-            type: String,
-            required: true,
-            enum: ['Student', 'Alumni'],
         },
     }],
 
     comments: [{
+      username:{
+        type: String,
+        required:true
+      },
 	    text: {
 	    	type: String,
 	    	required: true,
 	    },
+      profilePic : {
+        type: String,
+        default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+      },
 	    user: {
 	    	type: mongoose.Schema.Types.ObjectId,
-	    	refPath: "comments.userTypeOfWhoCommented",
+	    	ref: "User",
 	    	required: true,
 	    },
-        userTypeofWhoCommented: {
-            type: String,
-            required: true,
-            enum: ['Student', 'Alumni'],
-        },
-        timestamp: {
+      userType: {
+          type: String,
+          required: true,
+          enum: ['admin', 'student', 'alumni'],
+      },
+      timestamp: {
+        createdAt: {
           type: Date,
           default: Date.now,
         },
+      },
 	}],
 
     timestamp: {

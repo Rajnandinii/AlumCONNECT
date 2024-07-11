@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+
 import { useState, useEffect, useRef } from 'react';
 import {Home, Bell, MessageSquareMore, Menu, Search, Send} from 'lucide-react'
 
@@ -45,7 +46,7 @@ function Topbar() {
             icon:Home,
         },
         {   name:"Chat",
-            href:"/chat",
+            href:"/chatsection",
             icon:Send, 
         },
         {   name:"Alerts",

@@ -14,7 +14,7 @@ cloudinary.config({
 const uploadOnCloudinary = async (localFilePath) =>{
     try{
         if (!localFilePath){
-            console.log('no filepath sent to cloudinary')
+            //console.log('no filepath sent to cloudinary')
             return null
         } 
 

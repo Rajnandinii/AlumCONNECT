@@ -396,7 +396,7 @@ const SignUp = () => {
                         
                         {loading &&  <div className='absolute z-10 w-full h-full flex items-center justify-center'>
                                 <div className='backdrop-blur-sm w-full h-full flex items-center justify-center'>
-                                <div className={`w-16 h-16 border-4 border-dashed rounded-full  animate-spin dark:border-${theme_color}`}></div>
+                                <div className={`w-16 h-16 border-4 border-dashed rounded-full  animate-spin border-${theme_color}`}></div>
                                 </div>
                             </div>}
 
